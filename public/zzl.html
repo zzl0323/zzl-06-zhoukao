@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+				list-style: none;
+			}
+			.boss{
+				width: 600px;
+				border: 2px #000000 solid;
+				padding: 10px;
+				margin: 0 auto;
+			}
+			.boss p:nth-child(2n-1){
+				font-size: 25px;
+				color: red;
+			}
+			.boss p:nth-child(2n){
+				font-size: 20px;
+				padding-left: 50px;
+			}
+			.bottom{
+				width: 600px;
+				background-color: #BCBCBC;
+				padding: 10px;
+				margin: 30px auto;
+			}
+			.one{
+				width: 200px;
+				height: 30px;
+				padding-left: 10px;
+			}
+			.two{
+				width: 300px;
+				height: 30px;
+				padding-left: 10px;
+			}
+			.btn{
+				width: 50px;
+				height: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="boss">
+			<p>aaaaa</p>
+			<p>11111</p>
+			<p>bbbbb</p>
+			<p>22222</p>
+			<p>ccccc</p>
+			<p>33333</p>
+			<p>ddddd</p>
+			<p>444444</p>
+		</div>
+		<div class="bottom">
+			<input type="text" id="one" placeholder="name">
+			<input type="text" id="two" placeholder="passward">
+			<input type="button" name="btn" class="btn" value="添加"/>
+		</div>
+		
+		<script type="text/javascript" src="javascripts/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript">
+			$('.btn').mousedown(function(){
+				var content1=$("#one").val();
+				var content2=$("#two").val();
+				$.ajax({
+					url:"http://localhost:3000",
+					type:"POST",
+					data:{title:content1,cont:content2},
+					success:function(e){
+						$('.boss').append('<p>'+e.name+'</p>')
+						$('.boss').append('<p>'+e.name2+'</p>')
+					}
+				})
+			})
+		</script>
+	</body>
+</html>
